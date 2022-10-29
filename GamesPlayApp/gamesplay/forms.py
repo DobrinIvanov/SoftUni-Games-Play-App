@@ -1,6 +1,6 @@
 from django import forms
 
-from GamesPlayApp.gamesplay.models import Profile
+from GamesPlayApp.gamesplay.models import Profile, Game
 
 
 class CreateProfileForm(forms.ModelForm):
@@ -10,3 +10,17 @@ class CreateProfileForm(forms.ModelForm):
         widgets = {
             'password': forms.PasswordInput(),
         }
+
+
+class GameForm(forms.ModelForm):
+    class Meta:
+        model = Game
+        fields = '__all__'
+
+
+class CreateGameForm(GameForm):
+    pass
+
+
+class EditGameForm(GameForm):
+    pass

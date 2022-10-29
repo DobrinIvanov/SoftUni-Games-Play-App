@@ -8,9 +8,9 @@ urlpatterns = (
     path('dashboard/', dashboard, name='dashboard'),
     path('game/', include([
         path('create/', create_game, name='create_game'),
-        path('details/<int:id>/', details_game, name='details_game'),
-        path('edit/<int:id>/', edit_game, name='edit_game'),
-        path('delete/<int:id>/', delete_game, name='delete_game')
+        path('details/<int:pk>/', details_game, name='details_game'),
+        path('edit/<int:pk>/', edit_game, name='edit_game'),
+        path('delete/<int:pk>/', delete_game, name='delete_game')
     ])),
     path('profile/', include([
         path('create/', create_profile, name='create_profile'),
