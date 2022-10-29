@@ -13,12 +13,12 @@
     <header>
 
         <!-- navigation bar -->
-        <h1><a class="home" href="#">GamesPlay</a></h1>
+        <h1><a class="home" href="{% url 'index' %}">GamesPlay</a></h1>
         <nav>
             <!-- if the user has created a profile -->
-            <a href="#">Dashboard</a>
-            <a href="#">Create Game</a>
-            <a href="#">Profile</a>
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="{% url 'create_game' %}">Create Game</a>
+            <a href="{% url 'details_profile' %}">Profile</a>
         </nav>
     </header>
 {% block content %}

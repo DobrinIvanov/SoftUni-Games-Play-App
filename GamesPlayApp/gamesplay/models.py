@@ -1,3 +1,4 @@
+from django import forms
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
@@ -14,13 +15,14 @@ class Profile(models.Model):
     )
 
     age = models.IntegerField(
-        validators=MinValueValidator(12),
+        validators=(MinValueValidator(12),)
     )
 
     password = models.CharField(
         null=False,
         blank=False,
         max_length=MAX_LEN_PASS,
+
     )
 
     first_name = models.CharField(
@@ -66,7 +68,7 @@ class Game(models.Model):
         null=False,
         blank=False,
         max_length=MAX_LEN_CATEGORY,
-        choces=CATEGORY_CHOICES,
+        choices=CATEGORY_CHOICES,
     )
 
     rating = models.FloatField(

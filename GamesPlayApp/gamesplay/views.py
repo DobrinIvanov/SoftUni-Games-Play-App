@@ -1,13 +1,34 @@
-from django.shortcuts import render
+from django.core.handlers import exception
+from django.shortcuts import render, redirect
+
+from GamesPlayApp.gamesplay.forms import CreateProfileForm
+from GamesPlayApp.gamesplay.models import Profile
+
+
 # Create your views here.
 
 
 def index(request):
-    pass
+    profile = Profile.objects.all().first()
+    context = {
+         'profile': profile,
+    }
+    return render(request, 'core/home-page.html', context)
 
 
 def create_profile(request):
-    pass
+    if request.method == "GET":
+        form = CreateProfileForm()
+    else:
+        form = CreateProfileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'profile/create-profile.html', context)
 
 
 def dashboard(request):
