@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Create your models here.
@@ -44,6 +44,7 @@ class Profile(models.Model):
 class Game(models.Model):
     MAX_LEN_TITLE = 30
     MAX_LEN_CATEGORY = 15
+
     CATEGORY_CHOICES = (
         ('Action', 'Action'),
         ('Adventure', 'Adventure'),
@@ -66,4 +67,29 @@ class Game(models.Model):
         blank=False,
         max_length=MAX_LEN_CATEGORY,
         choces=CATEGORY_CHOICES,
+    )
+
+    rating = models.FloatField(
+        null=False,
+        blank=False,
+        validators=(
+            MinValueValidator(0.1),
+            MaxValueValidator(5),
+        )
+    )
+
+    max_level = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        validators=(MinValueValidator(1),)
+    )
+
+    image_url = models.URLField(
+        null=True,
+        blank=True,
+    )
+
+    summary = models.TextField(
+        blank=False,
+        null=False,
     )
